@@ -1,0 +1,644 @@
+<title>Fabian Bürger Beratung</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg: #F1EDE3;
+    --bg-alt: #E7E2D2;
+    --card: #FBFAF6;
+    --ink: #2A2621;
+    --ink-soft: #5B5548;
+    --accent: #33513C;
+    --accent-ink: #F1EDE3;
+    --accent-soft: #DCE3D2;
+    --line: #D9D2C0;
+    --focus: #33513C;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #17150F;
+      --bg-alt: #201D16;
+      --card: #1E1B14;
+      --ink: #EDE7D9;
+      --ink-soft: #AFA791;
+      --accent: #8CB393;
+      --accent-ink: #14170F;
+      --accent-soft: #2B3527;
+      --line: #38331F;
+      --focus: #8CB393;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #17150F;
+    --bg-alt: #201D16;
+    --card: #1E1B14;
+    --ink: #EDE7D9;
+    --ink-soft: #AFA791;
+    --accent: #8CB393;
+    --accent-ink: #14170F;
+    --accent-soft: #2B3527;
+    --line: #38331F;
+    --focus: #8CB393;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Karla', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    scroll-behavior:smooth;
+  }
+  @media (prefers-reduced-motion: reduce){
+    body{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight:500;
+    text-wrap:balance;
+    margin:0;
+    color:var(--ink);
+  }
+
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin-inline:auto;
+    padding-inline:clamp(16px, 5vw, 40px);
+  }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;
+    top:env(safe-area-inset-top, 0px);
+    z-index:20;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-block:14px;
+    gap:16px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+    letter-spacing:0.01em;
+    text-decoration:none;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  nav.links{
+    display:flex;
+    gap:clamp(14px, 2.4vw, 28px);
+    flex-wrap:wrap;
+  }
+  nav.links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  nav.links a:hover{color:var(--accent);}
+  #nav-toggle{display:none;}
+  .burger{display:none;}
+
+  @media (max-width: 700px){
+    nav.links{
+      position:absolute;
+      inset-inline:0;
+      top:100%;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+      flex-direction:column;
+      gap:2px;
+      padding:8px clamp(16px,5vw,40px) 16px;
+      display:none;
+    }
+    nav.links a{padding-block:8px; display:block;}
+    #nav-toggle:checked ~ nav.links{display:flex;}
+    .burger{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:38px; height:38px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:var(--card);
+      cursor:pointer;
+    }
+    .burger svg{width:18px;height:18px;stroke:var(--ink);}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-block:clamp(48px, 9vw, 96px) clamp(40px, 7vw, 72px);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:clamp(24px, 5vw, 56px);
+    align-items:center;
+  }
+  @media (max-width: 780px){
+    .hero-grid{grid-template-columns:1fr;}
+  }
+  .eyebrow{
+    display:inline-block;
+    font-size:0.8rem;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    line-height:1.05;
+  }
+  .hero .sub{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.15rem, 2.4vw, 1.4rem);
+    color:var(--ink-soft);
+    margin-top:14px;
+    max-width:34ch;
+  }
+  .hero p.lede{
+    margin-top:20px;
+    max-width:56ch;
+    font-size:1.05rem;
+    color:var(--ink-soft);
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:22px;
+    padding:7px 14px;
+    border-radius:999px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-size:0.85rem;
+    font-weight:700;
+  }
+  .badge::before{
+    content:"";
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent);
+    flex:none;
+  }
+  .badge-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+  }
+  .badge-row .badge{margin-top:0;}
+  .badge-alt{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+  }
+  .badge-alt::before{background:var(--ink-soft);}
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:30px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 22px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:0.95rem;
+    text-decoration:none;
+    border:1px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--accent); color:var(--accent-ink);}
+  .btn-primary:hover{opacity:0.92;}
+  .btn-ghost{border-color:var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* Venn motif */
+  .venn{width:100%; max-width:220px; margin-inline:auto; display:block; flex:none;}
+  .venn text{
+    font-family:'Karla', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    fill:var(--ink);
+  }
+  .venn circle{fill-opacity:0.55;}
+
+  /* Portrait */
+  .portrait-frame{
+    position:relative;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    aspect-ratio:4/5;
+    max-width:380px;
+    margin-inline:auto;
+    background:var(--card);
+  }
+  .portrait-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 22%;
+    display:block;
+  }
+  .portrait-tag{
+    position:absolute;
+    left:14px; bottom:14px;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(4px);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:6px 12px;
+    font-size:0.82rem;
+    font-weight:700;
+    color:var(--ink);
+  }
+
+  .angebot-head{
+    display:flex;
+    align-items:center;
+    gap:clamp(20px, 4vw, 40px);
+    flex-wrap:wrap;
+  }
+  .angebot-head .section-head{margin-bottom:0; flex:1 1 320px;}
+
+  /* ---------- Sections ---------- */
+  section{padding-block:clamp(48px, 8vw, 84px);}
+  section.alt{background:var(--bg-alt); border-block:1px solid var(--line);}
+  .section-head{
+    max-width:62ch;
+    margin-bottom:clamp(28px, 5vw, 48px);
+  }
+  .section-head .eyebrow{margin-bottom:10px;}
+  .section-head h2{font-size:clamp(1.7rem, 3.4vw, 2.2rem);}
+  .section-head p{color:var(--ink-soft); margin-top:12px; font-size:1.02rem;}
+
+  .prose{max-width:66ch; display:flex; flex-direction:column; gap:16px; font-size:1.02rem; color:var(--ink-soft);}
+  .prose strong{color:var(--ink);}
+
+  /* Timeline */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    border-left:2px solid var(--line);
+    margin-left:6px;
+  }
+  .tl-item{
+    position:relative;
+    padding:0 0 32px 28px;
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-7px; top:4px;
+    width:12px; height:12px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--accent);
+  }
+  .tl-item.future::before{background:var(--accent-soft); border-color:var(--ink-soft);}
+  .tl-date{
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    color:var(--accent);
+    text-transform:uppercase;
+  }
+  .tl-item.future .tl-date{color:var(--ink-soft);}
+  .tl-title{font-weight:700; margin-top:4px; font-size:1.04rem;}
+  .tl-desc{color:var(--ink-soft); margin-top:4px; font-size:0.96rem; max-width:56ch;}
+
+  /* Cards */
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  @media (max-width: 820px){ .grid-3{grid-template-columns:1fr 1fr;} }
+  @media (max-width: 560px){ .grid-3{grid-template-columns:1fr;} }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px 22px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .card .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--accent);
+  }
+  .card h3{font-size:1.18rem;}
+  .card p{color:var(--ink-soft); font-size:0.96rem; margin:0;}
+
+  .note{
+    margin-top:26px;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    border-left:3px solid var(--accent-soft);
+    padding-left:14px;
+  }
+
+  /* Für wen list */
+  .taglist{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .tag{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 18px;
+    font-weight:600;
+    font-size:0.96rem;
+    flex:1 1 220px;
+  }
+
+  /* Contact */
+  .contact-box{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:flex-start;
+  }
+
+  footer.site{
+    border-top:1px solid var(--line);
+    padding-block:28px;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  footer.site .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a class="wordmark" href="#top">Fabian Bürger</a>
+    <input type="checkbox" id="nav-toggle" aria-hidden="true">
+    <label class="burger" for="nav-toggle" aria-label="Menü öffnen">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </label>
+    <nav class="links">
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#angebot">Angebot</a>
+      <a href="#fuer-wen">Für wen</a>
+      <a href="#werdegang">Werdegang</a>
+      <a href="#fahrplan">Fahrplan</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Coaching · Mediation · Supervision</span>
+        <h1>Fabian Bürger</h1>
+        <p class="sub">Beratung, die aus dem Feld kommt.</p>
+        <p class="lede">
+          Ich begleite Fach- und Führungskräfte im Sozial- und Bildungswesen durch Rollenfragen,
+          Konflikte und herausfordernde Fallverläufe &ndash; gegründet auf eigene Praxis in
+          Kita-Leitung und Fachberatung sowie eine berufsbegleitende Weiterbildung zum
+          Master &bdquo;Beratung in der Arbeitswelt&ldquo;.
+        </p>
+        <div class="badge-row">
+          <span class="badge">Im Aufbau &middot; Studienstart 2027</span>
+          <span class="badge badge-alt">Rheingau-Taunus-Kreis &amp; Umgebung</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#kontakt">Kontakt aufnehmen</a>
+          <a class="btn btn-ghost" href="#werdegang">Werdegang ansehen</a>
+        </div>
+      </div>
+      <div>
+        <svg class="venn" viewBox="0 0 320 280" role="img" aria-label="Drei sich überschneidende Kreise für Coaching, Mediation und Supervision" style="max-width:340px">
+          <circle cx="130" cy="115" r="95" fill="var(--accent)" />
+          <circle cx="190" cy="115" r="95" fill="var(--ink-soft)" />
+          <circle cx="160" cy="185" r="95" fill="#A6764A" fill-opacity="0.5"/>
+          <text x="72" y="70" text-anchor="middle">Coaching</text>
+          <text x="248" y="70" text-anchor="middle">Mediation</text>
+          <text x="160" y="252" text-anchor="middle">Supervision</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="ueber-mich" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Über mich</span>
+        <h2>Vom Beratungstisch in die Kita &ndash; und zurück</h2>
+      </div>
+      <div class="prose">
+        <p>
+          Bevor ich in die Pädagogik gewechselt bin, habe ich Volkswirtschaftslehre studiert und
+          vier Jahre als <strong>Senior Financial Consultant</strong> gearbeitet &ndash; unter anderem
+          als Referent für Karriereseminare. Die Erfahrung in Gesprächsführung und Beratung habe ich
+          mitgenommen, als ich mich neu orientiert und ein duales Studium der Kindheitspädagogik
+          begonnen habe.
+        </p>
+        <p>
+          Seit 2026 arbeite ich als <strong>pädagogische Fachberatung</strong> und begleite sieben
+          Kitas sowie eine Waldgruppe &ndash; zuvor habe ich selbst eine Kita geleitet. Ich kenne die
+          Themen, mit denen Teams und Leitungen im Alltag ringen, aus erster Hand: Rollenklarheit,
+          Teamkonflikte, Belastung, schwierige Gespräche, Übergänge in der Leitung.
+        </p>
+        <p>
+          Aus dieser Praxis heraus baue ich derzeit ein zweites berufliches Standbein auf: als
+          <strong> Coach, Mediator und Supervisor</strong> &ndash; mit einer fundierten, DGSv-anerkannten
+          Weiterbildung im Rücken.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="angebot">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Angebot</span>
+        <h2>Drei Formate, ein Ausgangspunkt</h2>
+        <p>Coaching, Mediation und Supervision überschneiden sich in der Praxis oft &ndash; alle drei
+          setzen an der Rolle, an Beziehungen und an konkreten Situationen im Arbeitsalltag an.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <span class="num">01</span>
+          <h3>Coaching</h3>
+          <p>Für Leitungs- und Fachkräfte, die Klarheit in ihrer Rolle, ihren Entscheidungen oder
+            ihrer beruflichen Weiterentwicklung suchen &ndash; einzeln oder im Tandem.</p>
+        </div>
+        <div class="card">
+          <span class="num">02</span>
+          <h3>Mediation</h3>
+          <p>Wenn Konflikte im Team, zwischen Fachkraft und Leitung oder mit Trägern festgefahren
+            sind und einen strukturierten, allparteilichen Rahmen brauchen.</p>
+        </div>
+        <div class="card">
+          <span class="num">03</span>
+          <h3>Supervision</h3>
+          <p>Fallreflexion und kollegiale Beratung für pädagogische Teams &ndash; ein geschützter Raum,
+            um schwierige Situationen aus dem Alltag zu bearbeiten.</p>
+        </div>
+      </div>
+      <p class="note">Alle drei Formate baue ich derzeit im Rahmen meiner berufsbegleitenden
+        Weiterbildung auf &ndash; den zeitlichen Fahrplan finden Sie weiter unten.</p>
+    </div>
+  </section>
+
+  <section id="fuer-wen" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Für wen</span>
+        <h2>Zielgruppen</h2>
+      </div>
+      <div class="taglist">
+        <div class="tag">Kitas &amp; freie Träger</div>
+        <div class="tag">Einrichtungen der Kinder- und Jugendhilfe</div>
+        <div class="tag">Leitungs- und Fachkräfte im Sozial- und Bildungswesen</div>
+        <div class="tag">Teams im Übergang &ndash; z.&nbsp;B. Leitungswechsel oder Neuausrichtung</div>
+      </div>
+      <p class="note">
+        <strong style="color:var(--ink)">Einzugsgebiet:</strong> Schwerpunkt liegt im Rheingau-Taunus-Kreis
+        und der näheren Umgebung meines Wohnorts Hohenstein &ndash; u.&nbsp;a. Taunusstein, Bad Schwalbach,
+        Idstein, Niedernhausen, Aarbergen und Wiesbaden, in einem Umkreis von ca. 25&ndash;30&nbsp;km.
+        Für Anfragen außerhalb dieses Gebiets sprechen Sie mich gerne trotzdem an.
+      </p>
+    </div>
+  </section>
+
+  <section id="werdegang">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Werdegang</span>
+        <h2>Wie ich hierhergekommen bin</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">2014 &ndash; 2018</div>
+          <div class="tl-title">B.A. Volkswirtschaftslehre</div>
+          <div class="tl-desc">Universität Trier</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2018 &ndash; 2022</div>
+          <div class="tl-title">Senior Financial Consultant</div>
+          <div class="tl-desc">MLP Finanzberatung SE, Frankfurt am Main &ndash; inkl. Referent für Karriereseminare</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2022 &ndash; 2026</div>
+          <div class="tl-title">Duales Studium Kindheitspädagogik (B.A.)</div>
+          <div class="tl-desc">IU Internationale Hochschule, parallel an der Kath. Kita St. Laurentius, Mainz-Ebersheim</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026</div>
+          <div class="tl-title">Kita-Leitung</div>
+          <div class="tl-desc">Kita Purzelbaum, Flörsheim am Main</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">seit 2026</div>
+          <div class="tl-title">Pädagogische Fachberatung</div>
+          <div class="tl-desc">Amt für Kinder, Jugend und Familie, Stadt Flörsheim am Main &ndash; Verantwortung für sieben Kitas und eine Waldgruppe</div>
+        </div>
+        <div class="tl-item future">
+          <div class="tl-date">ab 2027 (geplant)</div>
+          <div class="tl-title">Master &bdquo;Beratung in der Arbeitswelt&ldquo; (M.A.)</div>
+          <div class="tl-desc">Frankfurt University of Applied Sciences &ndash; Coaching, Mediation, Supervision, Organisationsberatung</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fahrplan" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Fahrplan</span>
+        <h2>Ehrlich gesagt: Ich bin noch im Aufbau</h2>
+        <p>Und das mit Absicht &ndash; eine fundierte Ausbildung ist mir wichtiger als ein schneller Start.
+          Hier sehen Sie, wo ich gerade stehe.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">Phase 1 &ndash; jetzt</div>
+          <div class="tl-title">Praxis &amp; Vorbereitung</div>
+          <div class="tl-desc">Tätigkeit als Fachberatung, Vorbereitung der Zulassung zum Master (eigene Beratungserfahrung, Eignungsgespräch)</div>
+        </div>
+        <div class="tl-item future">
+          <div class="tl-date">Phase 2 &ndash; 2027 bis 2030</div>
+          <div class="tl-title">Studium</div>
+          <div class="tl-desc">Berufsbegleitender Master &bdquo;Beratung in der Arbeitswelt&ldquo;, DGSv-anerkannte Supervisionsausbildung</div>
+        </div>
+        <div class="tl-item future">
+          <div class="tl-date">Phase 3 &ndash; parallel ab 2027</div>
+          <div class="tl-title">Aufbau</div>
+          <div class="tl-desc">Erste Coaching- und Beratungsformate im kleinen Rahmen, Aufbau von Praxis und Netzwerk</div>
+        </div>
+        <div class="tl-item future">
+          <div class="tl-date">Phase 4 &ndash; ab ca. 2030</div>
+          <div class="tl-title">Volles Angebot</div>
+          <div class="tl-desc">Coaching, Mediation und Supervision als etabliertes zweites Standbein neben der Fachberatungstätigkeit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Lassen Sie uns sprechen</h2>
+        <p>Ob für ein erstes unverbindliches Gespräch oder um informiert zu bleiben, sobald mein
+          Angebot startet &ndash; ich freue mich über eine Nachricht.</p>
+      </div>
+      <div class="contact-box">
+        <div class="cta-row" style="margin-top:0">
+          <a class="btn btn-primary" href="mailto:kontakt@fabianbuerger.de">kontakt@fabianbuerger.de</a>
+          <a class="btn btn-ghost" href="tel:+491729821548">0172 9821548</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Fabian Bürger &ndash; Coaching · Mediation · Supervision</span>
+    <span>fabianbuerger.de</span>
+  </div>
+</footer>
