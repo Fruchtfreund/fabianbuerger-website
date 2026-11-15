@@ -390,7 +390,7 @@ section.alt{background:var(--bg-alt); border-block:1px solid var(--line);}
 
 /* Contact */
 #kontakt{
-  padding-bottom:0;
+  padding-bottom:clamp(64px, 10vw, 112px);
 }
 .kontakt-heading{
   margin-bottom:clamp(28px, 5vw, 48px);
