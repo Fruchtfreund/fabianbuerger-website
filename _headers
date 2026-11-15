@@ -1,0 +1,10 @@
+# Sicherheits-Header für alle Seiten (von Netlify ausgewertet)
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+# Schriften ändern sich nie: lange im Browser zwischenspeichern
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
